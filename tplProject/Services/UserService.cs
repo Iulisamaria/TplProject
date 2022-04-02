@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using tplProject.Models;
 using tplProject.Helpers;
+using tplProject.Models.Repositories;
 
 namespace tplProject.Services
 {
@@ -19,10 +20,11 @@ namespace tplProject.Services
     public class UserService : IUserService
     {
         private tpl_databaseContext _context ;
-
-        public UserService(tpl_databaseContext context)
+        private ICard _card;
+        public UserService(tpl_databaseContext context, ICard card)
         {
             _context = context;
+            _card = card;   
         }
 
         public User Authenticate(string Email, string password)
@@ -70,7 +72,8 @@ namespace tplProject.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-
+            Card card = _card.AddCard();
+            user.IdCardNavigation=card;
             _context.User.Add(user);
             _context.SaveChanges();
 

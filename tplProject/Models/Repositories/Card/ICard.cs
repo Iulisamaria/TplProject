@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace tplProject.Models.Repositories
 {
-    public class ICard
+    public interface ICard
     {
+         Card AddCard() ;
     }
 }

@@ -20,6 +20,7 @@ using tplProject.Services;
 using tplProject.Models.Repositories;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace tplProject
 {
@@ -40,7 +41,7 @@ namespace tplProject
         {
             services.AddControllers();
             services.AddDbContext<tpl_databaseContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=tpl_database;Trusted_Connection=True"));
-
+           
 
             services.AddCors();
             services.AddControllers();
@@ -89,6 +90,12 @@ namespace tplProject
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILostItems, LostItemsRepository>();
+            services.AddScoped<ICard, CardRepository>();
+
+          //  services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,18 +104,31 @@ namespace tplProject
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             app.UseAuthorization();
 
+            app.UseDeveloperExceptionPage();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
+
         }
     }
 }

@@ -21,6 +21,8 @@ namespace tplProject
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
+
     }
 }

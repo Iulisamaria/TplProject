@@ -14,6 +14,7 @@ using tplProject.Models;
 using tplProject.Models.Users;
 using tplProject.Helpers;
 using tplProject.Services;
+using tplProject.Models.Repositories;
 
 namespace tplProject.Controllers
 {
@@ -24,6 +25,7 @@ namespace tplProject.Controllers
     {
         private IUserService _userService;
         private IMapper _mapper;
+        private ICard _card;
         private readonly AppSettings _appSettings;
 
         public UsersController(
@@ -80,6 +82,7 @@ namespace tplProject.Controllers
             try
             {
                 // create user
+                
                 User us = _userService.Create(user, model.Password);
                 return Ok(us);
             }

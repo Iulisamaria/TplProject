@@ -15,7 +15,7 @@ namespace tplProject.Models.Repositories
             _DatabaseContext = DatabaseContext;
         }
 
-        public async Task AddLostItems(AddLoseItemsViewModel loseItems)
+        public  void AddLostItems(AddLoseItemsViewModel loseItems)
         {
 
             LostItems addLostItems = new LostItems()
@@ -23,8 +23,8 @@ namespace tplProject.Models.Repositories
                 Info = loseItems.Info,
                 NrCrt = loseItems.NrCrt
             };
-            _DatabaseContext.LostItems.Add(addLostItems);
-            _DatabaseContext.SaveChanges();
+             _DatabaseContext.LostItems.Add(addLostItems);
+             _DatabaseContext.SaveChanges();
 
         }
         public async Task<LostItemsDetailsViewModel> Get(int id)

@@ -20,17 +20,15 @@ namespace tplProject.Controllers
         {
             _lostItems = lostItems;
         }
-        public IActionResult Index()
-        {
-            return Ok();
-        }
+
+      
         [AllowAnonymous]
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddLoseItemsViewModel lostItems)
         {
             try
             {
-                 await _lostItems.AddLostItems(lostItems);
+                  _lostItems.AddLostItems(lostItems);
                 return Ok();
             }
             catch(Exception ex)
