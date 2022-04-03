@@ -39,7 +39,23 @@ namespace tplProject.Models.Repositories
             };
             return passDetails;
         }
+        public async Task<PassType> Delete(int id)
+        {
+            var pass = await _DatabaseContext.PassType.FindAsync(id);
+            if (pass == null)
+                throw new Exception();
+            _DatabaseContext.PassType.Remove(pass);
+            _DatabaseContext.SaveChanges();
+            return pass;
+        }
+        public async Task Update(BasePassTypeViewModel passType)
+        {
+            var oldPassType = await _DatabaseContext.PassType.FindAsync(passType.Id);
+            oldPassType.Price = passType.Price;
+            oldPassType.TypePass = passType.TypePass;
 
-
+            _DatabaseContext.Update(oldPassType);
+            _DatabaseContext.SaveChanges();
+        }
     }
 }

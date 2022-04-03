@@ -5,37 +5,52 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using tplProject.Models.Repositories;
+using tplProject.ViewModels;
 
 namespace tplProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CardController : ControllerBase
+    
+    public class BusController : ControllerBase
     {
-        public readonly ICard _card;
-        public CardController(ICard card)
+        public readonly IBus _bus;
+        public BusController(IBus bus)
         {
-            _card = card;
+            _bus = bus;
         }
-        [HttpPost("{Cnp}")]
-        public async Task<IActionResult> Update(int ticketNumber, decimal Cnp)
-        {
-            try
-            {
-                await _card.UpdateRoutes(ticketNumber, Cnp);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                await _card.Get(id);
+               var bus= await _bus.Get(id);
+                return Ok(bus);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex.Message);
+            }
+        }
+        [HttpPost("add")]
+        public async Task<IActionResult> AddBus(AddBussViewModel buss)
+        {
+            try
+            {
+                 _bus.AddBus(buss);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex.Message);
+            }
+        }
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(BaseBusViewModel buss)
+        {
+            try
+            {
+                await _bus.Update(buss);
                 return Ok();
             }
             catch (Exception ex)
@@ -48,10 +63,10 @@ namespace tplProject.Controllers
         {
             try
             {
-                await _card.Delete(id);
+                await _bus.Delete(id);
                 return Ok();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 return BadRequest("Error" + ex.Message);
             }

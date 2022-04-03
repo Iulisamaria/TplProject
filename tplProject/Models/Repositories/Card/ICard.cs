@@ -11,5 +11,7 @@ namespace tplProject.Models.Repositories
          Card AddCard() ;
         Task UpdateRoutes(int ticketNumber, decimal cnp);
         Task<DetailsCardViewModels> Get(int id);
+        //Task Update(BaseCardViewModels card);
+        Task<Card> Delete(int id);
     }
 }

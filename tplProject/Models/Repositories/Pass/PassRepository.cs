@@ -34,6 +34,41 @@ namespace tplProject.Models.Repositories
             _databaseContext.Card.Update(user.IdCardNavigation);
             _databaseContext.SaveChanges();
         }
+        public async Task<DetailsPassViewModel> Get(int id)
+        {
 
+            var pass = _databaseContext.Pass.Find(id);
+            if (pass == null)
+            {
+                throw new Exception();
+            }
+            DetailsPassViewModel passDetails = new DetailsPassViewModel()
+            {
+                EndDate=pass.EndDate,
+                StartDate=pass.StartDate,
+                 IdType=pass.IdType
+            };
+            return passDetails;
+
+        }
+        public async Task Update(BasePassViewModel pass)
+        {
+            var oldPass = await _databaseContext.Pass.FindAsync(pass.Id);
+            oldPass.IdType = pass.IdType;
+            oldPass.StartDate = pass.StartDate;
+            oldPass.EndDate = pass.EndDate;
+            _databaseContext.Update(oldPass);
+            _databaseContext.SaveChanges();
+        }
+        public async Task<Pass> Delete(int id)
+        {
+            var pass = await _databaseContext.Pass.FindAsync(id);
+            if (pass == null)
+                throw new Exception();
+            _databaseContext.Pass.Remove(pass);
+            _databaseContext.SaveChanges();
+
+            return pass;
+        }
     }
 }

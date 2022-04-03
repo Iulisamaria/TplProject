@@ -94,6 +94,8 @@ namespace tplProject
             services.AddScoped<ILostItems, LostItemsRepository>();
             services.AddScoped<ICard, CardRepository>();
             services.AddScoped<IPass, PassRepository>();
+            services.AddScoped<IBus, BusRepository>();
+            services.AddScoped<IPassType, PassTypeRepository>();
 
             //  services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

@@ -1,41 +1,42 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using tplProject.Models.Repositories;
 using tplProject.ViewModels;
 
 namespace tplProject.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-
-    public class PassController : ControllerBase
+    public class PassTypeController : ControllerBase
     {
-        public IPass _pass;
-        public PassController(IPass pass)
+        public IPassType _passType;
+        public PassTypeController(IPassType passType)
         {
-            _pass = pass;
+            _passType = passType;
         }
-        [HttpPost("{Cnp}")]
-        public async Task<IActionResult> AddPass(AddPassViewModel pass,decimal Cnp)
+        [HttpPost("add")]
+        public async Task<IActionResult> AddPassType(AddPassTypeViewModel passType)
         {
             try
             {
-              await _pass.AddPass(pass,Cnp);
-                return Ok("CNP este:"+Cnp+pass);
+                 _passType.AddPassType(passType);
+                return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex);    
+                return BadRequest(ex);
             }
         }
         [HttpPut("update")]
-        public async Task<IActionResult> Update(BasePassViewModel pass)
+        public async Task<IActionResult> Update(BasePassTypeViewModel pass)
         {
             try
             {
-                await _pass.Update(pass);
+                await _passType.Update(pass);
                 return Ok();
             }
             catch (Exception ex)
@@ -48,8 +49,8 @@ namespace tplProject.Controllers
         {
             try
             {
-               var pass= await _pass.Get(id);
-                return Ok(pass);
+                var passType = await _passType.Get(id);
+                return Ok(passType);
             }
             catch (Exception ex)
             {
@@ -61,7 +62,7 @@ namespace tplProject.Controllers
         {
             try
             {
-                await _pass.Delete(id);
+                await _passType.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -72,3 +73,4 @@ namespace tplProject.Controllers
     }
 
 }
+

@@ -54,12 +54,25 @@ namespace tplProject.Controllers
         {
             try
             {
-                await _lostItems.Get(id);
-                return Ok();
+               var lostItems =await _lostItems.Get(id);
+                return Ok(lostItems);
             }
             catch (Exception ex)
             {
                 return BadRequest("Error"+ex);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _lostItems.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex.Message);
             }
         }
     }

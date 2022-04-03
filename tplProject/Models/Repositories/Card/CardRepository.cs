@@ -37,16 +37,20 @@ namespace tplProject.Models.Repositories
             };
             return cardDetails;
         }
-        //update card table  when buys pass
-        public async Task Update(BaseCardViewModels card)
-        {
-
-            BaseCardViewModels cardUpdate = new BaseCardViewModels()
-            {
-            };
-            _databaseContext.Update(cardUpdate);
-            _databaseContext.SaveChanges();
-        }
+        //update card table  when buys new pass
+        //public async Task Update(BaseCardViewModels card)
+        //{
+        //    //var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
+        //    //      .FirstOrDefaultAsync(i => i.Cnp == cnp);
+        //    //if (user == null)
+        //    //{
+        //    //    throw new Exception();
+        //    //}
+        //    var oldCard = await _databaseContext.Card.FindAsync(card.Id);
+        //    oldCard.PassId = card.PassId;
+        //    _databaseContext.Update(oldCard);
+        //    _databaseContext.SaveChanges();
+        //}
         //Update card table when user buys ticket
         public async Task UpdateRoutes(int ticketNumber, decimal cnp)
         {
@@ -68,6 +72,16 @@ namespace tplProject.Models.Repositories
             _databaseContext.Update(user.IdCardNavigation);
             _databaseContext.SaveChanges();
 
+        }
+        public async Task<Card> Delete(int id)
+        {
+            var card = await _databaseContext.Card.FindAsync(id);
+            if (card == null)
+                throw new Exception();
+            _databaseContext.Card.Remove(card);
+            _databaseContext.SaveChanges();
+
+            return card;
         }
     }
 }

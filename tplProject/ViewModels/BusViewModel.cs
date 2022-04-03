@@ -10,4 +10,10 @@ namespace tplProject.ViewModels
         public int? Name { get; set; }
         public int Id { get; set; }
     }
+    public class AddBussViewModel
+    {
+        public int? Name { get; set; }
+      
+    }
 }
+

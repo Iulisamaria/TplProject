@@ -11,5 +11,6 @@ namespace tplProject.Models.Repositories
         public void AddLostItems(AddLoseItemsViewModel loseItems);
         Task<LostItemsDetailsViewModel> Get(int id);
         Task Update(BaseLostItemsViewModel lostItems);
+        Task<LostItems> Delete(int id);
     }
 }

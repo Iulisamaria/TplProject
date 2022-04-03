@@ -19,5 +19,10 @@ namespace tplProject.ViewModels
         public int? IdType { get; set; }
 
     }
+
+    public class DetailsPassViewModel:BasePassViewModel
+    {
+
+    }
    
 }

@@ -46,14 +46,20 @@ namespace tplProject.Models.Repositories
         }
         public async Task Update(BaseLostItemsViewModel lostItems )
         {
-            LostItemsDetailsViewModel lostItemsDetails = new LostItemsDetailsViewModel()
-            {
-                Id = lostItems.Id,
-                Info = lostItems.Info,
-                NrCrt = lostItems.NrCrt
-            };
-            _DatabaseContext.Update(lostItems);
+            var oldLostItems = await _DatabaseContext.LostItems.FindAsync(lostItems.Id);
+            oldLostItems.Info = lostItems.Info;
+            _DatabaseContext.Update(oldLostItems);
             _DatabaseContext.SaveChanges();
+        }
+        public async Task<LostItems> Delete(int id)
+        {
+            var lostItems = await _DatabaseContext.LostItems.FindAsync(id);
+            if (lostItems == null)
+                throw new Exception();
+            _DatabaseContext.LostItems.Remove(lostItems);
+            _DatabaseContext.SaveChanges();
+
+            return lostItems;
         }
 
     }
