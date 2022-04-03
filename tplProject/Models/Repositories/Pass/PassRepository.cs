@@ -14,17 +14,24 @@ namespace tplProject.Models.Repositories
         {
             _databaseContext = databaseContext;
         }
-        public async Task AddPass(AddPassViewModel pass)
+        public async Task AddPass(AddPassViewModel pass, decimal cnp)
         {
+            var user = await  _databaseContext.User.FindAsync(cnp);
+            if (user == null)
+                throw new Exception("User not found");
 
             Pass addPass = new Pass()
             {
                 StartDate =pass.StartDate,
                 EndDate = pass.EndDate,
+                IdType = pass.IdType,   
             };
+
+            user.IdCardNavigation.PassId=addPass.Id;
+
             _databaseContext.Pass.Add(addPass);
+            _databaseContext.Card.Update(user.IdCardNavigation);
             _databaseContext.SaveChanges();
         }
-
     }
 }

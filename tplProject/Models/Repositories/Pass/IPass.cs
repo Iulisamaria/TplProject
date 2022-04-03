@@ -6,8 +6,8 @@ using tplProject.ViewModels;
 
 namespace tplProject.Models.Repositories
 {
-    interface IPass
+    public interface IPass
     {
-        Task AddPass(AddPassViewModel pass);
+        Task AddPass(AddPassViewModel pass, decimal cnp);
     }
 }

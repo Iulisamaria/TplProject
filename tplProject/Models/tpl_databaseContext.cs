@@ -11,6 +11,7 @@ namespace tplProject.Models
 
         public tpl_databaseContext()
         {
+
         }
 
         public tpl_databaseContext(DbContextOptions<tpl_databaseContext> options)
