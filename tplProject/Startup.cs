@@ -34,19 +34,21 @@ namespace tplProject
             _env = env;
             _configuration = configuration;
         }
-       
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddDbContext<tpl_databaseContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=tpl_database;Trusted_Connection=True"));
-           
+
 
             services.AddCors();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            services.AddControllers().AddNewtonsoftJson(options =>
+                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        );
             // configure strongly typed settings objects
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -91,9 +93,9 @@ namespace tplProject
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILostItems, LostItemsRepository>();
             services.AddScoped<ICard, CardRepository>();
-            services.AddScoped<IPass,PassRepository>(); 
+            services.AddScoped<IPass, PassRepository>();
 
-          //  services.AddEndpointsApiExplorer();
+            //  services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
 
@@ -105,7 +107,7 @@ namespace tplProject
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
             }
             app.UseSwagger();
             app.UseSwaggerUI();

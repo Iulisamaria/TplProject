@@ -72,8 +72,9 @@ namespace tplProject.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-            Card card = _card.AddCard();
-            user.IdCardNavigation=card;
+            Card card = new Card();
+            user.IdCardNavigation = card;
+
             _context.User.Add(user);
             _context.SaveChanges();
 

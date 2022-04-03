@@ -19,7 +19,7 @@ namespace tplProject.Models.Repositories
         {
 
             LostItems addLostItems = new LostItems()
-            {
+            {   
                 Info = loseItems.Info,
                 NrCrt = loseItems.NrCrt
             };

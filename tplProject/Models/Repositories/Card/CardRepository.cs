@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using tplProject.Models;
 using tplProject.Models.Repositories;
@@ -14,14 +16,14 @@ namespace tplProject.Models.Repositories
         {
             _databaseContext = databaseContext;
         }
-        public  Card AddCard()
+        public Card AddCard()
         {
-
             Card addCard = new Card();
             _databaseContext.Card.Add(addCard);
             _databaseContext.SaveChanges();
             return addCard;
 
         }
+        
     }
 }

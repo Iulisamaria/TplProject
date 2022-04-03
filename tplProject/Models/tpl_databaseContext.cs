@@ -1,17 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace tplProject.Models
 {
     public partial class tpl_databaseContext : DbContext
     {
-        private IConfiguration configuration;
-
         public tpl_databaseContext()
         {
-
         }
 
         public tpl_databaseContext(DbContextOptions<tpl_databaseContext> options)
@@ -43,18 +39,14 @@ namespace tplProject.Models
             {
                 entity.ToTable("bus");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Name).HasColumnName("name");
             });
 
             modelBuilder.Entity<Card>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.PassId).HasColumnName("pass_id");
 
@@ -63,16 +55,15 @@ namespace tplProject.Models
                 entity.HasOne(d => d.Pass)
                     .WithMany(p => p.Card)
                     .HasForeignKey(d => d.PassId)
-                    .HasConstraintName("FK__Card__pass_id__36B12243");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Card__pass_id__10566F31");
             });
 
             modelBuilder.Entity<LostItems>(entity =>
             {
                 entity.ToTable("LOST_ITEMS");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Info)
                     .HasColumnName("INFO")
@@ -87,9 +78,7 @@ namespace tplProject.Models
             {
                 entity.ToTable("PASS");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.EndDate)
                     .HasColumnName("end_date")
@@ -104,16 +93,15 @@ namespace tplProject.Models
                 entity.HasOne(d => d.IdTypeNavigation)
                     .WithMany(p => p.Pass)
                     .HasForeignKey(d => d.IdType)
-                    .HasConstraintName("FK__PASS__id_type__33D4B598");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__PASS__id_type__0D7A0286");
             });
 
             modelBuilder.Entity<PassType>(entity =>
             {
                 entity.ToTable("pass_type");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.TypePass)
                     .HasColumnName("type_pass")
@@ -126,9 +114,7 @@ namespace tplProject.Models
             {
                 entity.ToTable("ROUTE");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("NAME")
@@ -145,9 +131,7 @@ namespace tplProject.Models
 
             modelBuilder.Entity<Stations>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nume)
                     .HasMaxLength(10)
@@ -158,11 +142,11 @@ namespace tplProject.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Cnp)
-                    .HasName("PK__Users__C1FF677C1E1ACECE");
+                    .HasName("PK__User__C1FF677C0EA4954A");
 
                 entity.Property(e => e.Cnp)
                     .HasColumnName("CNP")
-                    .ValueGeneratedNever();
+                    .HasColumnType("numeric(13, 0)");
 
                 entity.Property(e => e.Email)
                     .HasColumnName("email")
@@ -197,8 +181,11 @@ namespace tplProject.Models
                 entity.HasOne(d => d.IdCardNavigation)
                     .WithMany(p => p.User)
                     .HasForeignKey(d => d.IdCard)
-                    .HasConstraintName("FK__Users__id_card__3C69FB99");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__User__id_card__1332DBDC");
             });
+
+            modelBuilder.HasSequence("id_seq");
 
             OnModelCreatingPartial(modelBuilder);
         }
