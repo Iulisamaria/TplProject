@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using tplProject.Models.Repositories;
 using tplProject.ViewModels;
@@ -21,12 +22,12 @@ namespace tplProject.Controllers
         {
             try
             {
-               // _pass.AddPass(pass,Cnp);
+              await _pass.AddPass(pass,Cnp);
                 return Ok("CNP este:"+Cnp+pass);
             }
-            catch
+            catch(Exception ex)
             {
-                return BadRequest();    
+                return BadRequest(ex);    
             }
         }
     }

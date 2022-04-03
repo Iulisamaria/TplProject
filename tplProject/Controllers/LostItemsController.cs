@@ -46,7 +46,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error");
+                return BadRequest(ex);
             }
         }
         [HttpGet("get")]
@@ -59,7 +59,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error");
+                return BadRequest("Error"+ex);
             }
         }
     }

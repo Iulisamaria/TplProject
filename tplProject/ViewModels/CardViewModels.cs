@@ -3,12 +3,16 @@
     public class BaseCardViewModels
     {
         public int Id { get; set; }
-        public int? NrCrt { get; set; }
-        public string Info { get; set; }
+        public int? Routes { get; set; }
+        public int? PassId { get; set; }
     }
     public class GetPassIdViewModel
     {
         public int Id { get; set; }
     }
-    
+    public class DetailsCardViewModels
+    {
+        public int? Routes { get; set; }
+        public int? PassId { get; set; }
+    }
 }

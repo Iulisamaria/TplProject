@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using tplProject.Models;
+using tplProject.ViewModels;
 
 namespace tplProject.Models.Repositories
 {
@@ -14,4 +15,8 @@ namespace tplProject.Models.Repositories
             _databaseContext = databaseContext;
         }
     }
+    //public async Task<BaseBusViewModel> Add(Bus bus)
+    //{
+
+    //}
 }
