@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tplProject.Models.Repositories.Route
+namespace tplProject.Models.Repositories
 {
-    interface IRoute
+    public interface IRoute
     {
     }
 }

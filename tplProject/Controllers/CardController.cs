@@ -8,7 +8,7 @@ using tplProject.Models.Repositories;
 
 namespace tplProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CardController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error" + ex);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex);
             }
         }
         [HttpDelete("{id}")]
@@ -53,7 +53,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error" + ex.Message);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
             }
         }
     }

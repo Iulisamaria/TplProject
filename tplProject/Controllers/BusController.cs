@@ -9,7 +9,7 @@ using tplProject.ViewModels;
 
 namespace tplProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     
     public class BusController : ControllerBase
@@ -29,7 +29,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error" + ex.Message);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
             }
         }
         [HttpPost("add")]
@@ -42,7 +42,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error" + ex.Message);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
             }
         }
         [HttpPut("update")]
@@ -55,7 +55,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error" + ex);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex);
             }
         }
         [HttpDelete("{id}")]
@@ -68,7 +68,7 @@ namespace tplProject.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest("Error" + ex.Message);
+                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
             }
         }
     }

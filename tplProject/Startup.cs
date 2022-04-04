@@ -50,6 +50,17 @@ namespace tplProject
                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                         );
             // configure strongly typed settings objects
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+             builder =>
+             {
+                 builder
+                 .WithOrigins("http://localhost:3000")
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .AllowCredentials();
+             }));
+
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -122,6 +133,7 @@ namespace tplProject
             app.UseSwaggerUI();
 
             app.UseAuthorization();
+            app.UseCors("CorsPolicy");
 
             app.UseDeveloperExceptionPage();
             app.UseEndpoints(endpoints =>
