@@ -18,6 +18,7 @@ namespace tplProject.Models
         public virtual DbSet<Bus> Bus { get; set; }
         public virtual DbSet<Card> Card { get; set; }
         public virtual DbSet<LostItems> LostItems { get; set; }
+        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Pass> Pass { get; set; }
         public virtual DbSet<PassType> PassType { get; set; }
         public virtual DbSet<Route> Route { get; set; }
@@ -72,6 +73,23 @@ namespace tplProject.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.NrCrt).HasColumnName("NR_CRT");
+            });
+
+            modelBuilder.Entity<News>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Content)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Pass>(entity =>
