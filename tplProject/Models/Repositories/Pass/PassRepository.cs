@@ -24,8 +24,8 @@ namespace tplProject.Models.Repositories
 
             Pass addPass = new Pass()
             {
-                StartDate = pass.StartDate,
-                EndDate = pass.EndDate,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(30),
                 IdType = pass.IdType,
             };
 
@@ -44,7 +44,7 @@ namespace tplProject.Models.Repositories
             }
             DetailsPassViewModel passDetails = new DetailsPassViewModel()
             {
-                EndDate=pass.EndDate,
+                EndDate = pass.EndDate,
                 StartDate=pass.StartDate,
                  IdType=pass.IdType
             };

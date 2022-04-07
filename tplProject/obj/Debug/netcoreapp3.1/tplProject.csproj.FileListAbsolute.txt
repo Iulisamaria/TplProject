@@ -266,6 +266,5 @@ C:\Users\user\Documents\IP\TplProject\tplProject\bin\Debug\netcoreapp3.1\Newtons
 C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.csproj.CoreCompileInputs.cache
 C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\user\Documents\IP\TplProject\tplProject\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.csprojAssemblyReference.cache
-C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\staticwebassets\tplProject.StaticWebAssets.xml
+C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.csproj.AssemblyReference.cache
+C:\Users\user\Documents\IP\TplProject\tplProject\obj\Debug\netcoreapp3.1\tplProject.GeneratedMSBuildEditorConfig.editorconfig

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -18,9 +16,7 @@ using tplProject.Helpers;
 using tplProject.Models;
 using tplProject.Services;
 using tplProject.Models.Repositories;
-using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 
 namespace tplProject
 {
@@ -107,7 +103,7 @@ namespace tplProject
             services.AddScoped<IPass, PassRepository>();
             services.AddScoped<IBus, BusRepository>();
             services.AddScoped<IPassType, PassTypeRepository>();
-
+            services.AddScoped<IRoute, RouteRepository>();
             //  services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
