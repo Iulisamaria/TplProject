@@ -8,8 +8,9 @@ namespace tplProject.Models.Repositories
 {
     public interface ILostItems
     {
-        public void AddLostItems(AddLoseItemsViewModel loseItems);
+        public void AddLostItems(AddLostItemsViewModel lostItems);
         Task<LostItemsDetailsViewModel> Get(int id);
+        Task<List<LostItems>> GetAll();
         Task Update(BaseLostItemsViewModel lostItems);
         Task<LostItems> Delete(int id);
     }

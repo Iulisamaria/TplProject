@@ -10,6 +10,8 @@ namespace tplProject.Models.Repositories.Station
     {
         public void AddStation(AddStationViewModel station);
         Task<DetailsStationViewModel> Get(int id);
+        Task<List<Stations>> GetAll();
+
         Task Update(BaseStationViewModel station);
         Task<Stations> Delete(int id);
     }

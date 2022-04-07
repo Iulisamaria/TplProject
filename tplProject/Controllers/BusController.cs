@@ -29,7 +29,20 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
+                return BadRequest( ex.Message);
+            }
+        }
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var bus = await _bus.GetAll();
+                return Ok(bus);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
         [HttpPost("add")]
@@ -42,7 +55,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
+                return BadRequest( ex.Message);
             }
         }
         [HttpPut("update")]
@@ -55,7 +68,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex);
+                return BadRequest( ex);
             }
         }
         [HttpDelete("{id}")]
@@ -68,7 +81,7 @@ namespace tplProject.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
+                return BadRequest( ex.Message);
             }
         }
     }

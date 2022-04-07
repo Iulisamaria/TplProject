@@ -9,7 +9,7 @@ namespace tplProject.ViewModels
     {
         
     }
-    public class AddLoseItemsViewModel
+    public class AddLostItemsViewModel
     {
         public int? NrCrt { get; set; }
         public string Info { get; set; }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using tplProject.ViewModels;
 
@@ -21,6 +23,14 @@ namespace tplProject.Models.Repositories
             _DatabaseContext.Bus.Add(busAdd);
             _DatabaseContext.SaveChanges();
         }
+        public async Task<List<Bus>> GetAll()
+        {
+            var allBus = _DatabaseContext.Bus.ToList();
+            if (allBus == null)
+                throw new Exception();
+            return allBus;
+        }
+
         public async Task<BaseBusViewModel> Get(int id)
         {
 

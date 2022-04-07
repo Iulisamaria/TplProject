@@ -45,12 +45,33 @@ namespace tplProject.Models.Repositories
             DetailsPassViewModel passDetails = new DetailsPassViewModel()
             {
                 EndDate = pass.EndDate,
-                StartDate=pass.StartDate,
-                 IdType=pass.IdType
+                StartDate = pass.StartDate,
+                IdType = pass.IdType
             };
             return passDetails;
 
         }
+        public async Task<Pass> GetAbonament(decimal cnp)
+        {
+            var user = await _databaseContext.User.FindAsync(cnp);
+            var card = _databaseContext.Card.Where(x=>x.Id==user.IdCard).Include(x=>x.Pass).FirstOrDefault();
+            if (card.Pass == null)
+            {
+                throw new Exception();
+            }
+            return card.Pass;
+        }
+        public async Task<Card> GetTickets(decimal cnp)
+        {
+            var user = await _databaseContext.User.FindAsync(cnp);
+            var card = _databaseContext.Card.Where(x=>x.Id==user.IdCard).Include(x=>x.Pass).FirstOrDefault();
+            if (card.Routes == null)
+            {
+                throw new Exception();
+            }
+            return card;
+        }
+
         public async Task Update(BasePassViewModel pass)
         {
             var oldPass = await _databaseContext.Pass.FindAsync(pass.Id);

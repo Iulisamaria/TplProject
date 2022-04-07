@@ -9,9 +9,9 @@ namespace tplProject.Models.Repositories
     public interface ICard
     {
          Card AddCard() ;
-        Task UpdateRoutes(int ticketNumber, decimal cnp);
+        Task AddTickets(int ticketNumber, decimal cnp);
         Task<DetailsCardViewModels> Get(int id);
-        //Task Update(BaseCardViewModels card);
+        Task Update(BaseCardViewModels card, decimal cnp);
         Task<Card> Delete(int id);
     }
 }

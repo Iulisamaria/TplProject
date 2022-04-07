@@ -11,6 +11,8 @@ namespace tplProject.Models.Repositories
          Task<Bus> Delete(int id);
          Task Update(BaseBusViewModel bus);
          Task<BaseBusViewModel> Get(int id);
+        Task<List<Bus>> GetAll();
+
         public void AddBus(AddBussViewModel bus);
 
     }

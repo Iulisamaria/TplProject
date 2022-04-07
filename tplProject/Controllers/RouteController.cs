@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using tplProject.Models.Repositories;
@@ -37,6 +36,19 @@ namespace tplProject.Controllers
             try
             {
                 var route = await _route.Get(id);
+                return Ok(route);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex);
+            }
+        }
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var route = await _route.GetAll();
                 return Ok(route);
             }
             catch (Exception ex)

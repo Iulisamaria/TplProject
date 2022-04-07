@@ -38,34 +38,34 @@ namespace tplProject.Models.Repositories
             return cardDetails;
         }
         //update card table  when buys new pass
-        //public async Task Update(BaseCardViewModels card)
-        //{
-        //    //var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
-        //    //      .FirstOrDefaultAsync(i => i.Cnp == cnp);
-        //    //if (user == null)
-        //    //{
-        //    //    throw new Exception();
-        //    //}
-        //    var oldCard = await _databaseContext.Card.FindAsync(card.Id);
-        //    oldCard.PassId = card.PassId;
-        //    _databaseContext.Update(oldCard);
-        //    _databaseContext.SaveChanges();
-        //}
-        //Update card table when user buys ticket
-        public async Task UpdateRoutes(int ticketNumber, decimal cnp)
+        public async Task Update(BaseCardViewModels card,decimal cnp)
+        {
+            var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
+                              .FirstOrDefaultAsync(i => i.Cnp == cnp);
+            if (user == null)
+            {
+                throw new Exception();
+            }
+            var oldCard = await _databaseContext.Card.FindAsync(card.Id);
+            oldCard.PassId = card.PassId;
+            _databaseContext.Update(oldCard);
+            _databaseContext.SaveChanges();
+        }
+        //Update card table when user buys ticket.. AddTickets
+        public async Task AddTickets(int ticketNumber, decimal cnp)
         {
             var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
                   .FirstOrDefaultAsync(i => i.Cnp == cnp);
-            var pass = await _databaseContext.Pass.FindAsync(user.IdCardNavigation.PassId);
+              var pass = await _databaseContext.Pass.FindAsync(user.IdCardNavigation.PassId);
 
             if (user == null)
             {
                 throw new Exception();
             }
-            if (pass != null && pass.EndDate > DateTime.Now)
-            {
-                throw new Exception();
-            }
+            //if (pass != null && pass.EndDate > DateTime.Now)
+            //{
+            //    throw new Exception();
+            //}
             if (user.IdCardNavigation.Routes == null)
                 user.IdCardNavigation.Routes = 0;
             user.IdCardNavigation.Routes += ticketNumber;

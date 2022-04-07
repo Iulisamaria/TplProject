@@ -42,6 +42,13 @@ namespace tplProject.Models.Repositories
             return stationDetails;
 
         }
+        public async Task<List<Stations>> GetAll()
+        {
+            var allStations = _DatabaseContext.Stations.ToList();
+            if (allStations == null)
+                throw new Exception();
+            return allStations;
+        }
         public async Task Update(BaseStationViewModel station)
         {
             var oldstation = await _DatabaseContext.Stations.FindAsync(station.Id);

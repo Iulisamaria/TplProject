@@ -38,6 +38,16 @@ namespace tplProject.Models.Repositories
             _DatabaseContext.Route.Update(oldRoute);
             _DatabaseContext.SaveChanges();
         }
+        public async Task<List<Route>> GetAll()
+        {
+            var route =  _DatabaseContext.Route.ToList();
+            if (route == null)
+            {
+                throw new Exception();
+            }
+           
+            return route;
+        }
         public async Task<RouteDetailsViewModel> Get(int id)
         {
             var route = await _DatabaseContext.Route.FindAsync(id);

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using tplProject.Models.Repositories;
+using tplProject.ViewModels;
 
 namespace tplProject.Controllers
 {
@@ -17,12 +18,27 @@ namespace tplProject.Controllers
         {
             _card = card;
         }
-        [HttpPost("{Cnp}")]
-        public async Task<IActionResult> Update(int ticketNumber, decimal Cnp)
+        //AddRoutes
+        [HttpPost("addTickets/{Cnp}")]
+        public async Task<IActionResult> AddTickets(int ticketNumber, decimal Cnp)
         {
             try
             {
-                await _card.UpdateRoutes(ticketNumber, Cnp);
+                await _card.AddTickets(ticketNumber, Cnp);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        //update when change pass type 
+        [HttpPost("{Cnp}")]
+        public async Task<IActionResult> Update(BaseCardViewModels card, decimal Cnp)
+        {
+            try
+            {
+                await _card.Update(card, Cnp);
                 return Ok();
             }
             catch (Exception ex)
@@ -40,7 +56,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex);
+                return BadRequest(ex);
             }
         }
         [HttpDelete("{id}")]
@@ -53,7 +69,7 @@ namespace tplProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error Cristi was here... laptopul nu se lasa deschis...." + ex.Message);
+                return BadRequest( ex.Message);
             }
         }
     }

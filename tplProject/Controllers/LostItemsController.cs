@@ -24,7 +24,7 @@ namespace tplProject.Controllers
       
         [AllowAnonymous]
         [HttpPost("add")]
-        public async Task<IActionResult> Add(AddLoseItemsViewModel lostItems)
+        public async Task<IActionResult> Add(AddLostItemsViewModel lostItems)
         {
             try
             {
@@ -60,6 +60,19 @@ namespace tplProject.Controllers
             catch (Exception ex)
             {
                 return BadRequest("Error"+ex);
+            }
+        }
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var route = await _lostItems.GetAll();
+                return Ok(route);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex);
             }
         }
         [HttpDelete("{id}")]

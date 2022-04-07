@@ -15,7 +15,7 @@ namespace tplProject.Models.Repositories
             _DatabaseContext = DatabaseContext;
         }
 
-        public  void AddLostItems(AddLoseItemsViewModel loseItems)
+        public  void AddLostItems(AddLostItemsViewModel loseItems)
         {
 
             LostItems addLostItems = new LostItems()
@@ -43,6 +43,16 @@ namespace tplProject.Models.Repositories
             };
             return lostItemsDetails;
 
+        }
+        public async Task<List<LostItems>> GetAll()
+        {
+            var lostItems = _DatabaseContext.LostItems.ToList();
+            if (lostItems == null)
+            {
+                throw new Exception();
+            }
+
+            return lostItems;
         }
         public async Task Update(BaseLostItemsViewModel lostItems )
         {

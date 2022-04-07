@@ -12,6 +12,8 @@ namespace tplProject.Models.Repositories
         Task<Pass> Delete(int id);
         Task Update(BasePassViewModel pass);
         Task<DetailsPassViewModel> Get(int id);
+        Task<Pass> GetAbonament(decimal cnp);
+        Task<Card> GetTickets(decimal cnp);
 
 
     }

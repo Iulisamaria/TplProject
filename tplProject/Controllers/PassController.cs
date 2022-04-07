@@ -30,6 +30,7 @@ namespace tplProject.Controllers
                 return BadRequest(ex);    
             }
         }
+        
         [HttpPut("update")]
         public async Task<IActionResult> Update(BasePassViewModel pass)
         {
@@ -50,6 +51,32 @@ namespace tplProject.Controllers
             {
                var pass= await _pass.Get(id);
                 return Ok(pass);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex);
+            }
+        }
+        [HttpGet("getAbonamentByUserId")]
+        public async Task<IActionResult> GetAbonamentById(int userId)
+        {
+            try
+            {
+                var pass = await _pass.GetAbonament(userId);
+                return Ok(pass);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex);
+            }
+        }
+        [HttpGet("getTickets")]
+        public async Task<IActionResult> GetTickets(decimal cnp)
+        {
+            try
+            {
+                var card = await _pass.GetTickets(cnp);
+                return Ok(card.Routes);
             }
             catch (Exception ex)
             {
