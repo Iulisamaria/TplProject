@@ -102,9 +102,9 @@ namespace tplProject.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(decimal cnp)
         {
-            var user = _userService.GetById(id);
+            var user = _userService.GetById(cnp);
             var model = _mapper.Map<UserModel>(user);
             return Ok(model);
         }

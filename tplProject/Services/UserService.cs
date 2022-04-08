@@ -11,7 +11,7 @@ namespace tplProject.Services
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
-        User GetById(int id);
+        User GetById(decimal cnp);
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
@@ -52,9 +52,9 @@ namespace tplProject.Services
             return _context.User;
         }
 
-        public User GetById(int id)
+        public User GetById(decimal cnp)
         {
-            return _context.User.Find(id);
+            return _context.User.Find(cnp);
         }
 
         public User Create(User user, string password)
