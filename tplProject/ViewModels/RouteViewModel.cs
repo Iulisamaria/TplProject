@@ -28,7 +28,7 @@ namespace tplProject.ViewModels
     {
         public List<Stations> Path { get; set; }
         public string Start { get; set; }
-        public string Destination { get; set; }
+        public string End Destination { get; set; }
     }
 
 }

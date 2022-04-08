@@ -38,16 +38,38 @@ namespace tplProject.Models.Repositories
             _DatabaseContext.Route.Update(oldRoute);
             _DatabaseContext.SaveChanges();
         }
-        public async Task<List<Route>> GetAll()
+        public async Task<List<RouteDetailsViewModel>> GetAll()
         {
             var route =  _DatabaseContext.Route.ToList();
+            List<RouteDetailsViewModel> ListRoute = new List<RouteDetailsViewModel>();
             if (route == null)
             {
                 throw new Exception();
             }
-            foreach()
+            foreach(var item in route)
+            {
+                var list = item.Path.Split(",");
+                List<int> path = new List<int>();
+                foreach (var i in list)
+                {
+                    path.Add(Convert.ToInt32(i));
+                }
+                List<Stations> stations = new List<Stations>();
+                foreach (var j in path)
+                {
+                    var station = await _DatabaseContext.Stations.FindAsync(j);
+                    stations.Add(station);
+                }
+                RouteDetailsViewModel routeDetails = new RouteDetailsViewModel()
+                {
+                    Name = item.Name,
+                    Start = stations.First().Nume,
+                    End=stations.Last().Nume
+                };
+                ListRoute.Add(routeDetails);
+            }    
            
-            return route;
+            return ListRoute;
         }
         public async Task<RouteDetailsViewModel> Get(int id)
         {
