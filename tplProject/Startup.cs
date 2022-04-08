@@ -17,6 +17,7 @@ using tplProject.Models;
 using tplProject.Services;
 using tplProject.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
+using tplProject.Models.Repositories.Station;
 
 namespace tplProject
 {
@@ -105,6 +106,7 @@ namespace tplProject
             services.AddScoped<IPassType, PassTypeRepository>();
             services.AddScoped<IRoute, RouteRepository>();
             //  services.AddEndpointsApiExplorer();
+            services.AddScoped<IStation, StationReposiroty>();
             services.AddSwaggerGen();
 
 

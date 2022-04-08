@@ -62,9 +62,10 @@ namespace tplProject.Models.Repositories
                 }
                 RouteDetailsViewModel routeDetails = new RouteDetailsViewModel()
                 {
+                    Id=item.Id,
                     Name = item.Name,
-                    Start = stations.First().Nume,
-                    End=stations.Last().Nume
+                    Start = stations.FirstOrDefault().Nume,
+                    End=stations.LastOrDefault().Nume
                 };
                 ListRoute.Add(routeDetails);
             }    
