@@ -100,6 +100,7 @@ namespace tplProject.Controllers
             var model = _mapper.Map<IList<UserModel>>(users);
             return Ok(model);
         }
+        [AllowAnonymous]
 
         [HttpGet("{id}")]
         public IActionResult GetById(decimal cnp)
@@ -108,6 +109,7 @@ namespace tplProject.Controllers
             var model = _mapper.Map<UserModel>(user);
             return Ok(model);
         }
+        [AllowAnonymous]
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]UpdateModel model)
@@ -128,6 +130,7 @@ namespace tplProject.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [AllowAnonymous]
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
