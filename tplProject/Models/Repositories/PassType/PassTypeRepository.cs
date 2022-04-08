@@ -38,6 +38,13 @@ namespace tplProject.Models.Repositories
                Price=pass.Price
             };
             return passDetails;
+        } 
+        public async Task<List<PassType>> GetAll()
+        {
+            var listPassType = _DatabaseContext.PassType.ToList();
+            if (listPassType is null)
+                throw new Exception();
+            return listPassType;
         }
         public async Task<PassType> Delete(int id)
         {

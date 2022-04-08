@@ -57,6 +57,19 @@ namespace tplProject.Controllers
                 return BadRequest("Error" + ex);
             }
         }
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var passType = await _passType.GetAll();
+                return Ok(passType);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error" + ex);
+            }
+        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

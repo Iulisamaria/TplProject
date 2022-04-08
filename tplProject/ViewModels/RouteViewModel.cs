@@ -27,6 +27,8 @@ namespace tplProject.ViewModels
     public  class RouteDetailsViewModel:BaseRouteViewModel
     {
         public List<Stations> Path { get; set; }
+        public string Start { get; set; }
+        public string Destination { get; set; }
     }
 
 }

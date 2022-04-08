@@ -102,7 +102,7 @@ namespace tplProject.Controllers
         }
         [AllowAnonymous]
 
-        [HttpGet("{id}")]
+        [HttpGet("{cnp}")]
         public IActionResult GetById(decimal cnp)
         {
             var user = _userService.GetById(cnp);
@@ -130,7 +130,7 @@ namespace tplProject.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [AllowAnonymous]
+                [AllowAnonymous]
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

@@ -10,6 +10,8 @@ namespace tplProject.Models.Repositories
     {
         public void AddPassType(AddPassTypeViewModel pass);
         Task<PassTypeDetailsViewModel> Get(int id);
+        Task<List<PassType>> GetAll();
+
         Task<PassType> Delete(int id);
         Task Update(BasePassTypeViewModel passType);
     }
