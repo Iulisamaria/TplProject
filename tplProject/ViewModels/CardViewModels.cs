@@ -15,4 +15,12 @@
         public int? Routes { get; set; }
         public int? PassId { get; set; }
     }
+    public class GetPassCardViewModels
+    {
+        public string PassName { get; set; }
+    }
+    public class GetTicketsCardViewModels
+    {
+        public int? Routes { get; set; }
+    }
 }

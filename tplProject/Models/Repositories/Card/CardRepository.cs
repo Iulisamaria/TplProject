@@ -37,6 +37,37 @@ namespace tplProject.Models.Repositories
             };
             return cardDetails;
         }
+        public async Task<GetPassCardViewModels> GetPass(decimal cnp)
+        {
+            var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
+                                         .FirstOrDefaultAsync(i => i.Cnp == cnp);
+            var card = await _databaseContext.Card.Include(i => i.Pass).FirstOrDefaultAsync(i => i.Id == user.IdCard);
+            var pass = await _databaseContext.Pass.Include(i => i.IdTypeNavigation).FirstOrDefaultAsync(i => i.Id == card.PassId);
+            if (user == null)
+            {
+                throw new Exception();
+            }
+            GetPassCardViewModels cardDetails = new GetPassCardViewModels()
+            {
+                PassName = pass.IdTypeNavigation.TypePass
+            };
+            return cardDetails;
+        }
+        public async Task<GetTicketsCardViewModels> GetTickets(decimal cnp)
+        {
+            var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
+                                         .FirstOrDefaultAsync(i => i.Cnp == cnp);
+            var card = await _databaseContext.Card.Include(i => i.Pass).FirstOrDefaultAsync(i => i.Id == user.IdCard);
+            if (user == null)
+            {
+                throw new Exception();
+            }
+            GetTicketsCardViewModels cardDetails = new GetTicketsCardViewModels()
+            {
+                 Routes=card.Routes
+            };
+            return cardDetails;
+        }
         //update card table  when buys new pass
         public async Task Update(BaseCardViewModels card,decimal cnp)
         {

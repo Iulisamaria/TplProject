@@ -51,8 +51,34 @@ namespace tplProject.Controllers
         {
             try
             {
-                await _card.Get(id);
-                return Ok();
+                var card=await _card.Get(id);
+                return Ok(card);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet("getpass")]
+        public async Task<IActionResult> GetPass(decimal cnp)
+        {
+            try
+            {
+                var pass =await _card.GetPass(cnp);
+                return Ok(pass);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet("gettickets")]
+        public async Task<IActionResult> GetTickets(decimal cnp)
+        {
+            try
+            {
+                var tickets = await _card.GetTickets(cnp);
+                return Ok(tickets);
             }
             catch (Exception ex)
             {
