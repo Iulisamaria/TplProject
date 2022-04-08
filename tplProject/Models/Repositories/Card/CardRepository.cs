@@ -43,7 +43,7 @@ namespace tplProject.Models.Repositories
                                          .FirstOrDefaultAsync(i => i.Cnp == cnp);
             var card = await _databaseContext.Card.Include(i => i.Pass).FirstOrDefaultAsync(i => i.Id == user.IdCard);
             var pass = await _databaseContext.Pass.Include(i => i.IdTypeNavigation).FirstOrDefaultAsync(i => i.Id == card.PassId);
-            if (user == null)
+            if (user == null || card==null || pass==null)
             {
                 throw new Exception();
             }
@@ -58,7 +58,7 @@ namespace tplProject.Models.Repositories
             var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
                                          .FirstOrDefaultAsync(i => i.Cnp == cnp);
             var card = await _databaseContext.Card.Include(i => i.Pass).FirstOrDefaultAsync(i => i.Id == user.IdCard);
-            if (user == null)
+            if (user == null || card==null)
             {
                 throw new Exception();
             }

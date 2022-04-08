@@ -19,6 +19,7 @@ using tplProject.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using tplProject.Models.Repositories.Station;
 using tplProject.Models.Repositories.New;
+using tplProject.Models.Repositories.SendMail;
 
 namespace tplProject
 {
@@ -108,6 +109,7 @@ namespace tplProject
             services.AddScoped<IRoute, RouteRepository>();
             //  services.AddEndpointsApiExplorer();
             services.AddScoped<IStation, StationReposiroty>();
+            services.AddScoped<ISend, Send>();
             services.AddScoped<INewsRepository, NewsRepository>();
             services.AddSwaggerGen();
 
