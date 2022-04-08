@@ -9,7 +9,7 @@ using tplProject.ViewModels;
 
 namespace tplProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PassTypeController : ControllerBase
     {
