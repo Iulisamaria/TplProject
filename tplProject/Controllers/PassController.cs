@@ -44,7 +44,7 @@ namespace tplProject.Controllers
                 return BadRequest(ex);
             }
         }
-        [HttpGet("get")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
@@ -57,7 +57,7 @@ namespace tplProject.Controllers
                 return BadRequest("Error" + ex);
             }
         }
-        [HttpGet("getAbonamentByUserId")]
+        [HttpGet("getAbonamentByUserId/{userId}")]
         public async Task<IActionResult> GetAbonamentById(int userId)
         {
             try
@@ -70,7 +70,7 @@ namespace tplProject.Controllers
                 return BadRequest("Error" + ex);
             }
         }
-        [HttpGet("getTickets")]
+        [HttpGet("getTickets/{cnp}")]
         public async Task<IActionResult> GetTickets(decimal cnp)
         {
             try

@@ -49,7 +49,7 @@ namespace tplProject.Controllers
                 return BadRequest(ex);
             }
         }
-        [HttpGet("get")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
