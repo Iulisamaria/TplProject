@@ -3,45 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using tplProject.Models.Repositories;
+using tplProject.Models.Repositories.New;
 using tplProject.ViewModels;
-
 
 namespace tplProject.Controllers
 {
-    
-    [ApiController]
     [Route("[controller]")]
-    public class LostItemsController : ControllerBase
+    [ApiController]
+    public class NewsController : ControllerBase
     {
-        public readonly ILostItems _lostItems; 
-        public LostItemsController(ILostItems lostItems)
+
+        public readonly INewsRepository _news;
+        public NewsController(INewsRepository news)
         {
-            _lostItems = lostItems;
+            _news = news;
         }
 
-      
+
         [AllowAnonymous]
         [HttpPost("add")]
-        public async Task<IActionResult> Add(AddLostItemsViewModel lostItems)
+        public async Task<IActionResult> Add(AddNewsViewModel news)
         {
             try
             {
-                  _lostItems.AddLostItems(lostItems);
+                _news.Add(news);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest("Error"+ex);
+                return BadRequest("Error" + ex);
             }
         }
         [HttpPut("update")]
-        public async Task<IActionResult> Update(BaseLostItemsViewModel lostItems)
+        public async Task<IActionResult> Update(UpdateNewsViewModel news)
         {
             try
             {
-                await _lostItems.Update(lostItems);
+                await _news.Update(news);
                 return Ok();
             }
             catch (Exception ex)
@@ -54,12 +54,12 @@ namespace tplProject.Controllers
         {
             try
             {
-               var lostItems =await _lostItems.Get(id);
-                return Ok(lostItems);
+                var news = await _news.Get(id);
+                return Ok(news);
             }
             catch (Exception ex)
             {
-                return BadRequest("Error"+ex);
+                return BadRequest("Error" + ex);
             }
         }
         [HttpGet("getAll")]
@@ -67,8 +67,8 @@ namespace tplProject.Controllers
         {
             try
             {
-                var lostItems = await _lostItems.GetAll();
-                return Ok(lostItems);
+                var news = await _news.GetAll();
+                return Ok(news);
             }
             catch (Exception ex)
             {
@@ -80,7 +80,7 @@ namespace tplProject.Controllers
         {
             try
             {
-                await _lostItems.Delete(id);
+                await _news.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
