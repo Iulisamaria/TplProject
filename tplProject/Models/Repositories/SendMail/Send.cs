@@ -12,13 +12,13 @@ namespace tplProject.Services
         public void SendMail(string YourEmail,string YourSubject, String YourName, String Comments)
         {
             // Gmail Address from where you send the mail
-            var fromAddress = "iulisa_maria@icloud.com";
+            var fromAddress = "hallie.hegmann74@ethereal.email";
             // any address where the email will be sending
-            var toAddress = YourEmail;
+            var toAddress = "iulisazbranca@gmail.com";
             //Password of your gmail address
-            const string fromPassword = "";
+            const string fromPassword = "6d3e1eeejD7uK1ENQw";
             // Passing the values and make a email formate to display
-            string subject = YourSubject;
+            string subject = "Ai primit un email de la "+ YourEmail+" "+YourSubject;
             string body = "From: " + YourName + "\n";
             body += "Email: " + YourEmail + "\n";
             body += "Subject: " + YourSubject + "\n";
@@ -26,7 +26,7 @@ namespace tplProject.Services
             // smtp settings
             var smtp = new System.Net.Mail.SmtpClient();
             {
-                smtp.Host = "smtp.gmail.com";
+                smtp.Host = "smtp.ethereal.email";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
