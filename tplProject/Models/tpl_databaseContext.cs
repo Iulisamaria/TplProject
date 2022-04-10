@@ -57,7 +57,7 @@ namespace tplProject.Models
                     .WithMany(p => p.Card)
                     .HasForeignKey(d => d.PassId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Card__pass_id__10566F31");
+                    .HasConstraintName("FK__Card__pass_id__55F4C372");
             });
 
             modelBuilder.Entity<LostItems>(entity =>
@@ -81,13 +81,11 @@ namespace tplProject.Models
 
                 entity.Property(e => e.Content)
                     .IsRequired()
-                    .HasMaxLength(1)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasColumnType("ntext");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(1)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .IsFixedLength();
             });
@@ -111,8 +109,7 @@ namespace tplProject.Models
                 entity.HasOne(d => d.IdTypeNavigation)
                     .WithMany(p => p.Pass)
                     .HasForeignKey(d => d.IdType)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__PASS__id_type__0D7A0286");
+                    .HasConstraintName("FK__PASS__id_type__634EBE90");
             });
 
             modelBuilder.Entity<PassType>(entity =>
@@ -160,7 +157,7 @@ namespace tplProject.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Cnp)
-                    .HasName("PK__User__C1FF677C0EA4954A");
+                    .HasName("PK__User__C1FF677CD2F3692B");
 
                 entity.Property(e => e.Cnp)
                     .HasColumnName("CNP")
@@ -200,7 +197,7 @@ namespace tplProject.Models
                     .WithMany(p => p.User)
                     .HasForeignKey(d => d.IdCard)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__User__id_card__1332DBDC");
+                    .HasConstraintName("FK__User__id_card__58D1301D");
             });
 
             modelBuilder.HasSequence("id_seq");
