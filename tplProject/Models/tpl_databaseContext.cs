@@ -83,6 +83,10 @@ namespace tplProject.Models
                     .IsRequired()
                     .HasColumnType("ntext");
 
+                entity.Property(e => e.DateStart)
+                    .HasColumnName("dateStart")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(20)
@@ -120,9 +124,8 @@ namespace tplProject.Models
 
                 entity.Property(e => e.TypePass)
                     .HasColumnName("type_pass")
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Route>(entity =>
@@ -139,9 +142,8 @@ namespace tplProject.Models
 
                 entity.Property(e => e.Path)
                     .HasColumnName("path")
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Stations>(entity =>
@@ -149,9 +151,8 @@ namespace tplProject.Models
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nume)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<User>(entity =>

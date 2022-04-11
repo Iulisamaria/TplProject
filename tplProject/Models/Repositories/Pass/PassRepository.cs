@@ -15,7 +15,7 @@ namespace tplProject.Models.Repositories
         {
             _databaseContext = databaseContext;
         }
-        public async Task AddPass(AddPassViewModel pass, decimal cnp)
+        public async Task AddPass(AddPassViewModel pass, decimal cnp,int time)
         {
             var user = await _databaseContext.User.Include(i => i.IdCardNavigation)
                      .FirstOrDefaultAsync(i => i.Cnp == cnp);
@@ -25,7 +25,7 @@ namespace tplProject.Models.Repositories
             Pass addPass = new Pass()
             {
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(30),
+                EndDate = DateTime.Now.AddDays(time),
                 IdType = pass.IdType,
             };
 

@@ -18,11 +18,12 @@ namespace tplProject.Controllers
             _pass = pass;
         }
         [HttpPost("{Cnp}")]
-        public async Task<IActionResult> AddPass(AddPassViewModel pass,decimal Cnp)
+        public async Task<IActionResult> AddPass(AddPassViewModel pass,decimal Cnp,int time)
         {
             try
             {
-              await _pass.AddPass(pass,Cnp);
+              await _pass.AddPass(pass,Cnp,time
+                  );
                 return Ok("CNP este:"+Cnp+pass);
             }
             catch(Exception ex)

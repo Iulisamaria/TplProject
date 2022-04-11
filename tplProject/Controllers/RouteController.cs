@@ -22,12 +22,12 @@ namespace tplProject.Controllers
         {
             try
             {
-                _route.AddRoute(route);
+                await _route.AddRoute(route);
                 return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
         [HttpGet("get/{id}")]

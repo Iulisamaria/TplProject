@@ -20,7 +20,9 @@ namespace tplProject.Models.Repositories.New
             News addNew = new News()
             {
                 Name = news.Name,
-                Content = news.Content
+                Content = news.Content,
+                DateStart=news.DateStart
+            
             };
             _DatabaseContext.News.Add(addNew);
             _DatabaseContext.SaveChanges();
