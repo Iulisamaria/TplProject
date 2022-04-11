@@ -12,7 +12,7 @@ namespace tplProject.Services
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         User GetById(decimal cnp);
-        User Create(User user, string password);
+        User Create(User user, string password, string role);
         void Update(User user, string password = null);
         void Delete(int id);
     }
@@ -57,7 +57,7 @@ namespace tplProject.Services
             return _context.User.Find(cnp);
         }
 
-        public User Create(User user, string password)
+        public User Create(User user, string password,string role)
         {
             _context = new tpl_databaseContext();
             // validation
@@ -72,7 +72,7 @@ namespace tplProject.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-            user.Role = "user";
+            user.Role = role;
             Card card = new Card();
             user.IdCardNavigation = card;
 

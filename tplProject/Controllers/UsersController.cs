@@ -84,7 +84,7 @@ namespace tplProject.Controllers
             {
                 // create user
                 
-                User us = _userService.Create(user, model.Password);
+                User us = _userService.Create(user, model.Password,model.Role);
                 return Ok(us);
             }
             catch (AppException ex)
