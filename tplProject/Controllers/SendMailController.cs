@@ -20,7 +20,7 @@ namespace tplProject.Controllers
         }
         [AllowAnonymous]
 
-        [HttpOptions]
+        [HttpPost]
         public async Task<IActionResult> SendMail(string YourEmail, string YourSubject, String YourName, String Comments)
         {
             try
