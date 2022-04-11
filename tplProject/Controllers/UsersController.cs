@@ -65,6 +65,7 @@ namespace tplProject.Controllers
             return Ok(new
             {
                 ID= user.Cnp,
+                Role=user.Role,
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
